@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<form method="post" action="{%url 'save_product' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+<div class="card-body">
+    <h4 class="card-title" style="text-align:center ;font-size:40px ;color:red">P R O D U C T</h4>
+                    <p class="card-description" style="text-align:center ;color:black"> Product details </p>
+                    <form class="forms-sample">
+                      <div class="form-group">
+                          <label for="exampleSelectGender" style="color:skyblue">Select category</label><br></br>
+                        <select class="form-control" id="exampleSelectGender" name="name" >
+                            {% for d in p %}
+                          <option>{{d.Cname}}</option>
+                            {% endfor %}
+
+                        </select>
+                      <div class="form-group">
+                        <label style="color:skyblue" >Product name</label><br></br>
+                        <input type="text" class="form-control"  placeholder="product name" name="pname" >
+                      </div>
+                       <div class="form-group">
+                        <label style="color:skyblue">Quantity</label><br></br>
+                        <input type="text" class="form-control"  placeholder="Quantity" name="quantity">
+                      </div>
+                        <div class="form-group">
+                        <label style="color:skyblue">Price</label><br></br>
+                        <input type="text" class="form-control"  placeholder="price" name="price" >
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="exampleTextarea1" style="color:skyblue">Description</label><br></br>
+                        <textarea class="form-control" id="exampleTextarea1" rows="4" name="pdescription" ></textarea>
+                      </div>
+
+                        <div class="form-group">
+                        <label style="color:skyblue">File upload</label><br></br>
+                        <input type="file" name="pimage" >
+                        </div><br></br>
+<div style="text-align:center">
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+</div>
+                    </form>
+                  </div>
+</form>
+
+</body>
+</html>
+{% endblock %}
+
+
+

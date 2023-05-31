@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card-body">
+    <h1 style="text-align:center; color:red"> PRODUCT DETAILS</h1><br></br>
+                                <div class="table-responsive">
+                                    <table class="table primary-table-bordered">
+                                        <thead class="thead-primary">
+                                            <tr style="color:skyblue">
+
+
+                                               <th scope="col">Name</th>
+                                               <th scope="col">Pname</th>
+                                               <th scope="col">Quantity</th>
+                                               <th scope="col">Price</th>
+                                              <th scope="col">Description</th>
+                                                <th scope="col">Image</th>
+                                              <th>C o r r e c t i o n s</th>
+                                            </tr>
+                                        </thead>
+                        <tbody>
+                        {% for d in p %}
+                          <tr>
+                            <td style="color:white">{{d.Name}}</td>
+                            <td style="color:white">{{d.Pname}}</td>
+                            <td style="color:white">{{d.Quantity}}</td>
+                            <td style="color:white">{{d.Price}}</td>
+                              <td style="color:white">{{d.Pdescription}}</td>
+                            <td>
+                              <img src="{{d.Pimage.url}}" style="width:100px">
+                            </td>
+
+                              <td style="color:white">
+                              <form action="{%url 'edit_product' productid=d.id %}">
+                               <button type="submit">Edit</button>
+                              </form>
+                            </td>
+                            <td style="color:blue">
+                              <form action="{% url 'product_delete' productid=d.id %}">
+                                <button type="submit">Delete</button>
+                              </form>
+                            </td>
+
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                                    </table>
+                                </div>
+</body>
+</html>
+{% endblock %}

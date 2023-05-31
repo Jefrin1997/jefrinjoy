@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-sm-12 col-xl-6" style="width:1000px; margin-left:100px; margin-top:100px">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4" style="text-align:center;font-size:30px; color:red">ITEMS LISTS</h6>
+                            <table class="table">
+                                <thead>
+                                    <tr style="color:skyblue">
+                                        <th scope="col">Category name</th>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Description</th>
+                                        <th>Corrections</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     {% for d in data %}
+                                            <tr style="color:white">
+
+                                                <td>{{d.Cname}}</td>
+
+                                                 <td>
+                                                    <img src="{{d.Image.url}}" style="width:100px">
+                                                 </td>
+
+                                                <td>{{d.Description}}</td>
+
+                                          <td>
+                                             <form action="{% url 'edit_items' dataid=d.id %}">
+                                                 <button type="submit">Edit</button>
+                                             </form>
+                                          </td>
+                                          <td>
+                                               <form action="{% url 'items_delete' dataid=d.id %}">
+                                                   <button type="submit">Delete</button>
+                                               </form>
+                                          </td>
+</tr>
+                                        {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</body>
+</html>
+{% endblock %}
